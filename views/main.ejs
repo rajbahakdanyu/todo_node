@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        background-color: #7846eb;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+      input::placeholder {
+        color: #d3d3d3;
+      }
+
+      .submit {
+        background-color: #6ba3e8;
+      }
+
+      .center-column {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+      }
+
+      .item-row {
+        background-color: #7846eb;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);
+      }
+
+      .btn-danger {
+        background-color: #fe5d9f;
+        border-color: #fe5d9f;
+      }
+      .btn-danger:hover {
+        background-color: #ba3f72;
+        border-color: #ba3f72;
+      }
+    </style>
+    <title>Todo</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Todo Express.js</span>
+    </nav>
+
+    <div class="center-column">
+      <form method="POST" action="/">
+        <input type="text" name="title" id="title" placeholder="Enter a new task">
+        <input class="btn btn-info" type="submit" value="Add Task" />
+      </form>
+    
+      <div class="todo-list">
+        <% if (tasks.length > 0) { %> <% tasks.forEach(task => { %>
+        <div class="item-row">
+          <% if (task.completed == 1) { %>
+          <a class="btn btn-sm btn-info" href="/update/<%= task.id %>">
+            Undo
+          </a>
+          <% } else { %>
+          <a class="btn btn-sm btn-info" href="/update/<%= task.id %>">
+            Done
+          </a>
+          <% } %>
+          <a class="btn btn-sm btn-danger" href="/delete/<%= task.id %>">
+            Delete
+          </a>
+    
+          <% if (task.completed == 1) { %>
+          <strike><%= task.title %></strike>
+          <% } else { %>
+          <span><%= task.title %></span>
+          <% } %>
+        </div>
+        <% }) %> <% } %>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
