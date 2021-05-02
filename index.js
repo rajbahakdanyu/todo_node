@@ -5,11 +5,7 @@ const sqlcon = require("./connection");
 
 // express app
 const app = express();
-app.use(
-	express.urlencoded({
-		extended: true,
-	})
-);
+app.use(express.urlencoded({ extended: true }));
 
 // register view engine
 app.set("view engine", "ejs");

@@ -26,4 +26,27 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get('/update/:id', (req, res) => {
+    var querystring = `SELECT * FROM task WHERE id = ${req.params.id}`;
+
+	sqlcon.query(querystring, (err, rows, feilds) => {
+        if (!err) {
+            if (rows[0].completed == 0) {
+                querystring = `UPDATE task SET completed = 1 WHERE id = ${req.params.id}`;
+            } else {
+                querystring = `UPDATE task SET completed = 0 WHERE id = ${req.params.id}`;
+            }
+            sqlcon.query(querystring, (err, rows, feilds) => {
+                if (!err) {                    
+                    res.redirect('/');
+                } else {
+                    console.log(err);
+                }
+            });
+        } else {
+            console.log(err);
+        }
+    });
+})
+
 module.exports = router;
